@@ -14,10 +14,10 @@ describe('createCachedDataSource', () => {
     })
     expect(await dataSource.get()).toEqual(0)
     setTimeout(async () => {
-      expect(await dataSource.get()).toEqual(1)
+      expect(await dataSource.get()).toEqual(2)
     }, 1200)
     setTimeout(async () => {
-      expect(await dataSource.get()).toEqual(2)
+      expect(await dataSource.get()).toEqual(3)
     }, 2200)
   })
   it('destroy', async () => {
@@ -43,9 +43,9 @@ describe('createCachedDataSource', () => {
     expect(await dataSource.get()).toEqual('x')
     expect(mockSource).toHaveBeenCalledTimes(1)
     expect(await dataSource.get()).toEqual('x')
-    expect(mockSource).toHaveBeenCalledTimes(1)
+    expect(mockSource).toHaveBeenCalledTimes(2)
     expect(await dataSource.get()).toEqual('x')
-    expect(mockSource).toHaveBeenCalledTimes(1)
+    expect(mockSource).toHaveBeenCalledTimes(3)
   })
 
   it('returns null if data source returns null', async () => {

@@ -21,7 +21,7 @@ export default function createCachedDataSource<T>(
   let isDestroyed: boolean = false
 
   const fetchData = async (): Promise<T | null> => {
-    if (!isFetching && !isDestroyed && !data) {
+    if (!isFetching && !isDestroyed) {
       isFetching = true
       try {
         const response = await source()
