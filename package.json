@@ -1,6 +1,6 @@
 {
   "name": "cached-data-source",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Cached data source for general purposes",
   "main": "./dist/index.js",
   "types": "./types",
