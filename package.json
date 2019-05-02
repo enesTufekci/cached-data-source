@@ -1,0 +1,28 @@
+{
+  "name": "cached-data-source",
+  "version": "1.0.3",
+  "description": "Cached data source for general purposes",
+  "main": "./dist/index.js",
+  "types": "./types",
+  "files": [
+    "dist",
+    "types"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest --detectOpenHandles --forceExit"
+  },
+  "keywords": [
+    "cache datasource nodejs typescript"
+  ],
+  "author": "enesTufekci <enesxtufekci@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^3.4.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "jest": "^24.7.1",
+    "ts-jest": "^24.0.2"
+  }
+}
