@@ -43,9 +43,9 @@ describe('createCachedDataSource', () => {
     expect(await dataSource.get()).toEqual('x')
     expect(mockSource).toHaveBeenCalledTimes(1)
     expect(await dataSource.get()).toEqual('x')
-    expect(mockSource).toHaveBeenCalledTimes(2)
+    expect(mockSource).toHaveBeenCalledTimes(1)
     expect(await dataSource.get()).toEqual('x')
-    expect(mockSource).toHaveBeenCalledTimes(3)
+    expect(mockSource).toHaveBeenCalledTimes(1)
   })
 
   it('returns null if data source returns null', async () => {

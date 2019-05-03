@@ -20,8 +20,11 @@ export default function createCachedDataSource<T>(
   let isFetching: boolean = false
   let isDestroyed: boolean = false
 
-  const fetchData = async (): Promise<T | null> => {
-    if (!isFetching && !isDestroyed) {
+  const shouldRefetch = (forceFetch: boolean) =>
+    forceFetch || (!isFetching && !isDestroyed && !data)
+
+  const fetchData = async (forceFetch: boolean = false): Promise<T | null> => {
+    if (shouldRefetch(forceFetch)) {
       isFetching = true
       try {
         const response = await source()
@@ -48,7 +51,7 @@ export default function createCachedDataSource<T>(
         )} seconds`
       )
       fetchInterval = setInterval(async () => {
-        await fetchData()
+        await fetchData(true)
       }, updateInterval)
     }
   }
