@@ -17,25 +17,23 @@ export default function createCachedDataSource<T>(
   const { source, onError, debug = false, id = '', updateInterval } = config
   let data: T | null = null
   let fetchInterval: number = null as any
-  let isFetching: boolean = false
+  let hasData: boolean = false
   let isDestroyed: boolean = false
 
-  const shouldRefetch = (forceFetch: boolean) =>
-    forceFetch || (!isFetching && !isDestroyed && !data)
+  const shouldRefetch = (forceFetch: boolean) => isDestroyed ? false :
+    forceFetch || !hasData;
 
   const fetchData = async (forceFetch: boolean = false): Promise<T | null> => {
     if (shouldRefetch(forceFetch)) {
-      isFetching = true
       try {
         const response = await source()
         const result =
           response && response.json ? await response.json() : response
         data = result
-        isFetching = false
+        hasData = true
         log('Data fetched', data)
         return result
       } catch (error) {
-        isFetching = false
         log('Error occured', error)
         onError && onError(error)
       }
