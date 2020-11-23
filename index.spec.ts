@@ -20,20 +20,15 @@ describe('createCachedDataSource', () => {
       expect(await dataSource.get()).toEqual(3)
     }, 2200)
   })
-  it('get() parrallelized', async () => {
+
+  it('get() parallelized', async () => {
     let testData = 0
     const dataSource = createCachedDataSource({
       source: createMockSource(testData++),
       updateInterval: 1000
     })
     dataSource.get();
-    expect(await dataSource.get()).toEqual(0)
-    setTimeout(async () => {
-      expect(await dataSource.get()).toEqual(2)
-    }, 1200)
-    setTimeout(async () => {
-      expect(await dataSource.get()).toEqual(3)
-    }, 2200)
+    expect(await dataSource.get()).not.toEqual(null);
   })
 
   it('destroy', async () => {
