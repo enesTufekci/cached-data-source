@@ -21,7 +21,7 @@ export default function createCachedDataSource<T>(
   let isDestroyed: boolean = false
 
   const shouldRefetch = (forceFetch: boolean) =>
-    forceFetch || isFetching || (!isDestroyed && !data)
+    forceFetch || (isFetching && !isDestroyed && !data)
 
   const fetchData = async (forceFetch: boolean = false): Promise<T | null> => {
     if (shouldRefetch(forceFetch)) {
